@@ -1,6 +1,8 @@
 package app.idea;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -31,5 +33,16 @@ class Q13RomanToIntTest {
   void testRomanToIntegerConversions(String input, int expected) {
     assertEquals(expected, converter.romanToInt(input));
     assertEquals(expected, converter.romanToIntV2(input));
+  }
+
+  @Test
+  void testRomanToIntegerException() {
+    IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> converter.romanToInt("ABC"),
+            "Should throw exception when no solution exists"
+    );
+
+    assertEquals("Invalid Roman character", exception.getMessage());
   }
 }

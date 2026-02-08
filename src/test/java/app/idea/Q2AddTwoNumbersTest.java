@@ -25,12 +25,27 @@ class Q2AddTwoNumbersTest {
 
   private static Stream<Arguments> provideAddTwoNumbersCases() {
     return Stream.of(
-            // Example 1: Standard case
+            // 1. Existing Example 1: Standard case
             Arguments.of(new int[]{2, 4, 3}, new int[]{5, 6, 4}, new int[]{7, 0, 8}),
-            // Example 2: Zeroes
+
+            // 2. Existing Example 2: The "Just Zeros" case
             Arguments.of(new int[]{0}, new int[]{0}, new int[]{0}),
-            // Example 3: Different lengths and multiple carries
-            Arguments.of(new int[]{9, 9, 9, 9, 9, 9, 9}, new int[]{9, 9, 9, 9}, new int[]{8, 9, 9, 9, 0, 0, 0, 1})
+
+            // 3. The "Carry at the very end" case (Triggers: carry != 0)
+            // 5 + 5 = 10 -> [0, 1]
+            Arguments.of(new int[]{5}, new int[]{5}, new int[]{0, 1}),
+
+            // 4. L1 shorter than L2 (Triggers: l1 == null && l2 != null)
+            // 1 + 99 = 100 -> [0, 0, 1]
+            Arguments.of(new int[]{1}, new int[]{9, 9}, new int[]{0, 0, 1}),
+
+            // 5. L2 shorter than L1 (Triggers: l1 != null && l2 == null)
+            // 99 + 1 = 100 -> [0, 0, 1]
+            Arguments.of(new int[]{9, 9}, new int[]{1}, new int[]{0, 0, 1}),
+
+            // 6. Chain reaction carries (Tests continuous carry != 0)
+            // 999 + 1 = 1000 -> [0, 0, 0, 1]
+            Arguments.of(new int[]{9, 9, 9}, new int[]{1}, new int[]{0, 0, 0, 1})
     );
   }
 
@@ -40,17 +55,17 @@ class Q2AddTwoNumbersTest {
     Q2AddTwoNumbers.ListNode dummy = new Q2AddTwoNumbers.ListNode(0);
     Q2AddTwoNumbers.ListNode curr = dummy;
     for (int val : arr) {
-      curr.next = new Q2AddTwoNumbers.ListNode(val);
-      curr = curr.next;
+      curr.setNext(new Q2AddTwoNumbers.ListNode(val));
+      curr = curr.getNext();
     }
-    return dummy.next;
+    return dummy.getNext();
   }
 
   private void assertListEquals(int[] expected, Q2AddTwoNumbers.ListNode actual) {
     for (int val : expected) {
       assertNotNull(actual, "List ended earlier than expected");
-      assertEquals(val, actual.val);
-      actual = actual.next;
+      assertEquals(val, actual.getVal());
+      actual = actual.getNext();
     }
     assertNull(actual, "List is longer than expected");
   }

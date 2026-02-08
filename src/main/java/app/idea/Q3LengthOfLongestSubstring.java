@@ -42,8 +42,7 @@ public class Q3LengthOfLongestSubstring {
   // Deque：その両方のいいとこ取り。 前からでも後ろからでも追加・削除が可能
   private final Deque<Order> window = new LinkedList<>();
 
-  public void processNewOrder(long orderId) {
-    long currentTime = System.currentTimeMillis();
+  public int processNewOrder(long orderId,long currentTime) {
 
     // 1. 新しい注文を「右端」から追加
     window.addLast(new Order(orderId, currentTime));
@@ -56,6 +55,7 @@ public class Q3LengthOfLongestSubstring {
 
     // 3. 現在の窓の状態を表示
     System.out.println("直近10秒以内の注文数: " + window.size());
+    return window.size();
   }
 
   // 注文データ保持用クラス

@@ -1,5 +1,9 @@
 package app.idea;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 public class Q2AddTwoNumbers {
 
   public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -32,11 +36,13 @@ public class Q2AddTwoNumbers {
     return dummyHead.next; // Return the actual list starting after the dummy
   }
 
+  @NoArgsConstructor
+  @Getter
+  @Setter
   public static class ListNode {
-      public int val;
-      public ListNode next;
-      ListNode() {}
+      private int val;
+      private ListNode next;
+
       public ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
   }
 }
