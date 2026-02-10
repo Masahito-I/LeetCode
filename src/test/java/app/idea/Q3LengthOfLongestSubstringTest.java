@@ -15,7 +15,7 @@ class Q3LengthOfLongestSubstringTest {
 
   @ParameterizedTest
   @MethodSource("provideLongestSubstringCases")
-  void verifyQ1TwoSumTest(String s, int expected) {
+  void verifyQ3LengthOfLongestSubstringTest(String s, int expected) {
     assertEquals(expected, q3LengthOfLongestSubstring.lengthOfLongestSubstring(s));
   }
 

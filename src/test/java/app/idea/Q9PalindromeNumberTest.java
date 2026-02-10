@@ -14,7 +14,7 @@ class Q9PalindromeNumberTest {
 
   @ParameterizedTest
   @MethodSource("provideAddTwoNumbersCases")
-  void testAddTwoNumbers(int x, boolean expected) {
+  void testQ9PalindromeNumberTest(int x, boolean expected) {
     boolean result = q9PalindromeNumber.isPalindrome(x);
     assertEquals(expected, result);
   }
