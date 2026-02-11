@@ -30,7 +30,9 @@ class Q5LongestPalindromicSubstringTest {
             Arguments.of("a", "a"),
             Arguments.of("ac", "a"),      // or "c"
             Arguments.of("racecar", "racecar"),
-            Arguments.of("aaaa", "aaaa")
+            Arguments.of("aaaa", "aaaa"),
+            Arguments.of( null, ""),
+            Arguments.of( "", "")
     );
   }
 

@@ -15,10 +15,10 @@ class Q2AddTwoNumbersTest {
   @ParameterizedTest
   @MethodSource("provideAddTwoNumbersCases")
   void testAddTwoNumbers(int[] l1Array, int[] l2Array, int[] expectedArray) {
-    Q2AddTwoNumbers.ListNode l1 = toListNode(l1Array);
-    Q2AddTwoNumbers.ListNode l2 = toListNode(l2Array);
+    ListNode l1 = toListNode(l1Array);
+    ListNode l2 = toListNode(l2Array);
 
-    Q2AddTwoNumbers.ListNode result = q2AddTwoNumbers.addTwoNumbers(l1, l2);
+    ListNode result = q2AddTwoNumbers.addTwoNumbers(l1, l2);
 
     assertListEquals(expectedArray, result);
   }
@@ -51,21 +51,21 @@ class Q2AddTwoNumbersTest {
 
   // --- Helper Methods ---
 
-  private Q2AddTwoNumbers.ListNode toListNode(int[] arr) {
-    Q2AddTwoNumbers.ListNode dummy = new Q2AddTwoNumbers.ListNode(0);
-    Q2AddTwoNumbers.ListNode curr = dummy;
+  private ListNode toListNode(int[] arr) {
+    ListNode dummy = new ListNode(0);
+    ListNode curr = dummy;
     for (int val : arr) {
-      curr.setNext(new Q2AddTwoNumbers.ListNode(val));
-      curr = curr.getNext();
+      curr.next = new ListNode(val);
+      curr = curr.next;
     }
-    return dummy.getNext();
+    return dummy.next;
   }
 
-  private void assertListEquals(int[] expected, Q2AddTwoNumbers.ListNode actual) {
+  private void assertListEquals(int[] expected, ListNode actual) {
     for (int val : expected) {
       assertNotNull(actual, "List ended earlier than expected");
-      assertEquals(val, actual.getVal());
-      actual = actual.getNext();
+      assertEquals(val, actual.val);
+      actual = actual.next;
     }
     assertNull(actual, "List is longer than expected");
   }
