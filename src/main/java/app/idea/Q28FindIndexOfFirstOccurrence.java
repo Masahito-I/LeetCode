@@ -1,0 +1,11 @@
+package app.idea;
+
+public class Q28FindIndexOfFirstOccurrence {
+  public int strStr(String haystack, String needle) {
+    for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+      String temp = haystack.substring(i, i+needle.length());
+      if (temp.equals(needle)) return i;
+    }
+    return -1;
+  }
+}
